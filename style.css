@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500&display=swap');
+
 * {
     margin: 0px;
     padding: 0px;
+    font-family: Montserrat;
+    font-weight: 500;
 }
 
 body {
@@ -122,4 +126,21 @@ h1 {
 
 .item.r:before {
     transform: rotate(135deg);
+}
+
+button {
+    border-radius: 5px;
+    padding: 8px;
+    outline: none;
+    border: none;
+}
+
+select {
+    width: 150px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+option {
+    height: 50px;
 }
