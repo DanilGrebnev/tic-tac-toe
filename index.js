@@ -1,15 +1,13 @@
 document.addEventListener('DOMContentLoaded', main)
 
-function main() {
-    const get = selector => document.querySelector(selector)
-    const getAll = selector => document.querySelectorAll(selector)
-    const getRandom = (a) => Math.floor(Math.random() * a.length)
+async function main() {
+    const { get, getAll, getRandom, every, addElem } = await import('./fn.js')
+    const X = "https://cdn-icons-png.flaticon.com/512/656/656857.png"
     const RESTART = get('#res')
     const START = get('#start')
     const CONTAINER = get('.container')
     const SELECT = get('select')
     const MENU = get('#menu')
-    const X = "https://cdn-icons-png.flaticon.com/512/656/656857.png"
 
     const state = {
         count: 0,
@@ -76,11 +74,6 @@ function main() {
         o.player = !o.player
     }
 
-    //Добавляет Крест или Круг в зависимости от очереди 
-    function addElem(e, p) {
-        e.target.innerHTML = p ? '<div class ="circle"></div>' : `<img class="x" src="${X}">`
-    }
-
     //Условие выбора победившего игрока
     function choiceWin(a, className) {
         (every(a, "circle") || every(a, "x")) && a.forEach(el => el.classList.add(className))
@@ -133,13 +126,6 @@ function main() {
         p === 2 ? o.win2 = true : null
         p === 3 ? setTimeout(alert, 500, "Ничья") : null
     }
-
-    //Проврека наличия в массиве всех элементов с одним классом 
-    const every = (a, selector) => a.every(el => {
-        if (el.firstChild) {
-            if (el.firstChild.className === selector) return true
-        }
-    })
 
     function restart(e) {
         o = JSON.parse(JSON.stringify(state))
